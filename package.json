@@ -2,6 +2,9 @@
     "name": "socket-chat",
     "version": "0.0.1",
     "description": "a simple chat application",
+    "scripts": {
+        "devStart": "nodemon index.js"
+    },
     "dependencies": {
         "ejs": "^3.1.6",
         "express": "^4.17.1",

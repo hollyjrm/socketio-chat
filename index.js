@@ -5,6 +5,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -41,6 +42,7 @@ io.on('connection', socket => {
         rooms[room].users[socket.id] = name
         socket.to(room).emit('user-connected', name)
     })
+
     socket.on('send-chat-message', (room, message) => {
         socket.to(room).emit('chat-message', { message: message, name: rooms[room].users[socket.id] })
     })
@@ -51,6 +53,7 @@ io.on('connection', socket => {
         })
     })
 })
+
 
 function getUserRooms(socket) {
     return Object.entries(rooms).reduce((names, [name, room]) => {
